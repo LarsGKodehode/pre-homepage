@@ -1,0 +1,56 @@
+/* default or fallback values */
+body {
+  background-color: rgba(73,54,46);
+  color: bisque;
+  margin: 0px;
+
+  /* some variables for page wide stuff */
+  --page-banner-height: 200px
+}
+
+header {
+  background-image: url(/content/img/wood-panel-dark-brown.jpg);
+  /*see https://developer.mozilla.org/en-US/docs/Web/CSS/position_value
+  essentialy specifying position puts the element into it's own z-level*/
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 25vw;
+  height: var(--page-banner-height);
+  align-content: center;
+}
+
+#page-heading {
+  text-align: center;
+}
+
+.content-container {
+  border: 3px solid red;
+  margin-top: var(--page-banner-height);
+  display: flex;
+  flex-direction: row;
+}
+
+.content-deck {
+  border: 3px solid green;
+  margin: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.content-card {
+  border: 2px solid red;
+  min-width: 10rem;
+  max-width: 20%;
+  max-height: 30rem;
+  /* TODO: read eventual overflowing text */
+  overflow: hidden;
+}
+
+.content-sidebar-column {
+  border: 1px solid red;
+  margin-right: 1vw;
+}
