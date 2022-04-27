@@ -2,32 +2,33 @@
 body {
   background-color: rgba(73,54,46);
   color: bisque;
-  margin: 0px;
+  margin: 0px 0px;
 
-  /* some variables for page wide stuff */
-  --page-banner-height: 200px
+  /* some variables for page wide stuff, only one instance, not needed */
+  --page-banner-max-height: 500px
 }
 
 header {
   background-image: url(/content/img/wood-panel-dark-brown.jpg);
   /*see https://developer.mozilla.org/en-US/docs/Web/CSS/position_value
   essentialy specifying position puts the element into it's own z-level*/
-  position: absolute;
-  top: 0px;
-  left: 0px;
   width: 100%;
-  height: 25vw;
-  height: var(--page-banner-height);
-  align-content: center;
+  height: 100vw;
+  margin-top: 0px;
+  max-height: var(--page-banner-max-height);
+  object-fit: cover;
 }
 
 #page-heading {
   text-align: center;
 }
 
-.content-container {
+#page-heading {
+  text-align: center;
+}
+
+#main {
   border: 3px solid red;
-  margin-top: var(--page-banner-height);
   display: flex;
   flex-direction: row;
 }
@@ -38,11 +39,27 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
 }
 
-.content-card {
-  border: 2px solid red;
+.text-section {
+  font-size: 1.5rem;
+}
+
+.card {
+  background-color: darkorchid;
+  border: 1px solid black;
+  padding: 1rem;
+  margin: .2rem;
+  border-radius: 3rem;
+  box-shadow: .5rem .5rem .5rem black;
+}
+
+.card:hover {
+  box-shadow: 1.5rem 1.5rem 1.5rem black;
+  transform: translate3d(.1rem, .1rem, 2rem);
+}
+
+.deck {
   min-width: 10rem;
   max-width: 20%;
   max-height: 30rem;
@@ -54,3 +71,8 @@ header {
   border: 1px solid red;
   margin-right: 1vw;
 }
+
+/* TODO: does this need somthing of it's own? */
+/* .column {
+
+} */
