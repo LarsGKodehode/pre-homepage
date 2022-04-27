@@ -5,7 +5,7 @@ Private pre-release hompage project.
 
 1. update .html files with full range of html tags, tag ref https://developer.mozilla.org/en-US/docs/Web/HTML/Element
    - research test tools for automated check if tag present in .html
-2. check for formatting oppertunities for README.md
+2. ~~check for formatting oppertunities for README.md~~ [formatting options](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 3. add dedicated pages to display:
    - flex
    - grid
