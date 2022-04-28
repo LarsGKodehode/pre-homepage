@@ -41,12 +41,14 @@
 
 <!-- page layout and content -->
 <body>
-    <div id="nav-bar-base">
+  <!-- header is for introduction or navigational tools -->
+    <header id="nav-bar-base">
         <div class="nav-bar-video-container">
             <video class="hosted-video video-nav-bar-background" autoplay muted loop
             src="/content/video/top-banner-helix.mp4"></video>
         </div>
-        <div class="nav-bar-content-container">
+        <!-- nav element describes groups of internal or external links -->
+        <nav class="nav-bar-content-container">
             <div id="nav-bar-hompage-link">
                 <a class="logo-link" href="/index.html">
                     <img class="logo-default" src="/content/logo-default.png" alt="To frontpage"></a>
@@ -60,15 +62,19 @@
                 <li><a href="/index.html">Homepage 6</a></li>
                 <li><a href="/index.html">Homepage 7</a></li>
             </ul>
-        </div>
-    </div>
+        </nav>
+    </header>
 
-    <!-- TODO: organize content -->
+    <!-- TODO: design content -->
+    <!-- part of site containing actual content -->
     <main>
         <div id="content-base">
             <h1>TODO: define general layout for content section</h1>
-            <div class="content-element-deck">
+            <!-- section suggests grouped content -->
+            <section class="content-element-deck">
                 <div class="content-element-card">
+                  <!-- article used for content that can stand alone -->
+                  <article class="text-section">
                     <h2>Card 1</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu risus semper, sodales ante ut, lacinia mi.
@@ -82,8 +88,10 @@
                         augue
                         eros aliquet risus, ut commodo tellus ipsum sit amet risus.
                     </p>
+                </article>
                 </div>
                 <div class="content-element-card">
+                  <article class="text-section">
                     <h2>Card 2</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu risus semper, sodales ante ut, lacinia mi.
@@ -97,8 +105,9 @@
                         augue
                         eros aliquet risus, ut commodo tellus ipsum sit amet risus.
                     </p>
+                </article>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 
@@ -110,6 +119,11 @@
                 <li>footer text, info, contact, social media shortcuts, etc.</li>
                 <li><a class="bg-dark" href="/page-hierarchy/about.html">About</a>
             </ul>
+            <!-- contact info under here -->
+            <address id="contact-info">
+              <a class="contact-info-links contact-info-links-website" href="/index.html">Website</a>
+              <a class="contact-info-links contact-info-links-email" href="mailto:Lars.Gunnar.Kodehodet@gmail.com">Email</a>
+            </address>
         </div>
     </footer>
 </body>
