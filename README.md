@@ -10,6 +10,6 @@ Private pre-release hompage project.
    - flex
    - grid
    - block
-
 4. research autogeneration and updating of .html from templates (backend?)
-   - multipage, navbar, header, footer put on hold until this is done. might do some design for elements. 
+   - multipage, navbar, header, footer put on hold until this is done. might do some design for elements.
+5. compress media files for the benefit of limited data users
