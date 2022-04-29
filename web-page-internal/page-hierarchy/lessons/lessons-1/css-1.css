@@ -75,7 +75,24 @@ header {
   margin-right: 1vw;
 }
 
-/* TODO: does this need somthing of it's own? */
-/* .column {
+/* footer styling stoolen from base.css */
+#footer-base {
+  background-color: black;
+  color: beige;
+  display: flex;
+  justify-content: end;
+}
 
-} */
+.footer-empty-space {
+  width: 75vw;
+}
+
+.footer-content-container {
+  background-color: darkslategrey;
+  margin-right: 0px;
+}
+
+.footer-contact-info {
+list-style-type: none;
+margin: 1%;
+}
