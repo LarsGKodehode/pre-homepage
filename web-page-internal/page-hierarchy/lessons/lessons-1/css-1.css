@@ -57,9 +57,11 @@ header {
   box-shadow: .5rem .5rem .5rem black;
 }
 
-.card:hover {
-  box-shadow: 1.5rem 1.5rem 1.5rem black;
-  transform: translate3d(.1rem, .1rem, 2rem);
+@media (any-hover) {
+  .card:hover {
+    box-shadow: 1.5rem 1.5rem 1.5rem black;
+    transform: translate3d(.1rem, .1rem, 2rem);
+  }
 }
 
 .deck {
