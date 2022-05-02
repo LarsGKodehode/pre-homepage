@@ -6,13 +6,15 @@ Private pre-release hompage project.
 1. add dedicated pages to display:
    - flex
    - grid
-   - block??
-2. research autogeneration and updating of .html from templates (backend/framework stuff?)
-   - multipage, navbar, header, footer put on hold until this is done.
-3. work on design for page and site layout. utilize [figma](https://www.figma.com/) for design.
+   - ?block
+2. work on design for page and site layout. utilize [figma](https://www.figma.com/) for design.
    - remember various screensizes
    - redo template, landing page and about with new designg
-4. research test tools for automated check if tag present in .html
+
+##Delayed until further progress
+1. research autogeneration and updating of .html from templates (backend/framework stuff?)
+   - multipage, navbar, header, footer put on hold until this is done.
+2. research test tools for automated check if tag present in .html
 
 ##Done list:
 1. ~~update .html files with full range of html tags,~~ [MDN tag ref](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
