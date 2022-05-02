@@ -39,10 +39,6 @@ body{
 
 /* background sides */
 #sidescrapers-base {
-  /* DELETE from here */
-  background-color: var(--color2);
-  /* to here */
-
  background-image: url(/content/img/background.jpg);
 }
 
