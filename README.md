@@ -3,10 +3,11 @@ Private pre-release hompage project.
 
 ##Todo list:
 
-1. add dedicated pages to display:
-   - flex
-   - grid
-   - ?block
+1. Page for testing out concepts:
+   -Grid
+   -Parallax
+   -Sticky sections
+   -css animation
 2. work on design for page and site layout. utilize [figma](https://www.figma.com/) for design.
    - remember various screensizes
    - redo template, landing page and about with new designg
