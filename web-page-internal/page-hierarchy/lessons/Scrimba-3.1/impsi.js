@@ -57,6 +57,8 @@ class converter {
   };
 };
 
+document.getElementsByClassName()
+
 // activate program
 const program = new converter;
 setInterval(program.run(), 500);
