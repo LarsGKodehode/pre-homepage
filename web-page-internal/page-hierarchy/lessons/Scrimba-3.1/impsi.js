@@ -33,15 +33,19 @@ class converter {
   // converts currentInput to all registered types
   #convertAll() {
     for (const entry in conversionBook) {
-      this.#convertedInput[entry] = [conversionBook[entry].ratio1, conversionBook[entry].ratio2];
+      this.#convertedInput[entry] = [
+        Number.parseFloat(this.#currentInput * conversionBook[entry].ratio1).toFixed(3),
+        Number.parseFloat(this.#currentInput * conversionBook[entry].ratio2).toFixed(3)];
     };
   };
 
   // updates output fields
   #updateOutput() {
-    for (const entry in outputFields) {
-    	console.log(`logging entry ${entry}`)
-      console.log(outputFields[entry]);
+    for (const entry in conversionBook) {
+      outputFields[entry * 4 + 0].innerHTML = `${this.#currentInput} ${conversionBook[entry].unit1}`;
+      outputFields[entry * 4 + 1].innerHTML = `${this.#convertedInput[entry][0]} ${conversionBook[entry].unit2}`;
+      outputFields[entry * 4 + 2].innerHTML = `${this.#currentInput} ${conversionBook[entry].unit2}`;
+      outputFields[entry * 4 + 3].innerHTML = `${this.#convertedInput[entry][1]} ${conversionBook[entry].unit1}`;
     };
   };
 };
