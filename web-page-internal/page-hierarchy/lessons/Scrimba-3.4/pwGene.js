@@ -20,20 +20,19 @@ function generatePassword() {
   };
 };
 
+
+// theme switcher
 function switchTheme() {
-  console.log("button clicked");
   let currentTheme = document.body.dataset.theme;
   switch (currentTheme) {
     case "dark":
       document.body.dataset.theme = "light";
-      console.log("new theme is light")
       break;
     case "light":
       document.body.dataset.theme = "dark";
-      console.log("new theme is dark")
       break;
   };
 };
-
+// setup listener
 const themeSwitch = document.getElementById("theme-switcher");
 themeSwitch.addEventListener("click", switchTheme);
