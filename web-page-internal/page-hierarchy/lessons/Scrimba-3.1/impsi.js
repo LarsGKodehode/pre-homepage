@@ -13,7 +13,7 @@ class conversionEntry {
 class converter {
   // Public
   run() {
-    if (!this.#getInputInt() === true) {return}; // abort if can't parse input to real number
+    if (!this.#getInputNumber() === true) {return}; // abort if can't parse input to real number
     this.#convertAll(outputPrecision); // converts input with precision of argument
     this.#updateOutput();
   };
@@ -23,7 +23,7 @@ class converter {
   #convertedInput = []; // stores converted values in a convenient format
   
   // tests and parses input to number
-  #getInputInt() {
+  #getInputNumber() {
     let newInput = Number(input.value);
     if (!(typeof(newInput)) === "number" || (isNaN(newInput))) {return false}; // TODO: might get away with only checking for NAN
     this.#currentInput = newInput;
