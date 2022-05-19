@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Patua One";
+  src:
+  url("/content/fonts/patua-one/PatuaOne-Regular.woff2") format('woff2'),
+  url("/content/fonts/patua-one/PatuaOne-Regular.ttf") format('ttf');
+}
+
+/* colour palettes */
+body[data-theme = "theme-dark"] {
+  --color1: #FFE6C0;
+  --color2: #8A7E6C;
+  --color3: #544837;
+  --color-contrast: white;
+  --color-accent: #cd7f32;
+
+  --color-text-bright-1: black;
+  --color-text-bright-2: grey;
+  
+  --color-text-dark-1: white;
+  --color-text-dark-2: grey;
+
+  --color-link-dark-1: white;
+}
+
+body[data-theme = "theme-royal"] {
+  --color1: #4A2C40;
+  --color2: #E9BD43;
+  --color3: #7D3780;
+  --color-contrast: white;
+  --color-accent: #cd7f32;
+
+  --color-text-bright-1: black;
+  --color-text-bright-2: grey;
+  
+  --color-text-dark-1: white;
+  --color-text-dark-2: grey;
+
+  --color-link-dark-1: white;
+}
+
+body {
+  font-family: "Patua One", ui-rounded;
+
+  margin: 0px;
+  padding: 0px 3rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-accent);
+}
+
+/* Typography */
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* site wide link conformity */
+a:link {
+  text-decoration: none;
+  color: var(--color-link-dark-1);
+}
+
+a:visited {
+  color: var(--color-link-dark-1);
+}
+
+@media (any-hover) {
+  a:hover {
+
+}}
+
+a:active {
+
+}
+
+/* landing point screen container */
+#entrypoint-container {
+  height: 100vh;
+  background-color: var(--color1);
+  align-items: center;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 4em;
+  box-sizing: border-box;
+}
+
+/* portefolio carusel */
+#carusel-container {
+  height: 100vh;
+  background-color: var(--color2);
+}
+
+/* footer */
+#footer {
+  height: 100vh;
+  background-color: var(--color3);
+}
+
+/* navigation interface */
+#navigation-container {
+  border: 2px solid red;
+  /* fixed layout position */
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  /* content layout placement */
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 1em;
+
+  /* disable container for clicking */
+  pointer-events: none;
+}
+
+#logo-link {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 2px solid green;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+#searchbar {
+  border: 2px solid green;
+  height: 3rem;
+  padding: .5em 4em;
+  grid-column: 7 / 16;
+  grid-row: 1 / 3;
+}
+
+#nav-bar {
+  border: 2px solid green;
+  grid-column: -1 / -3;
+  grid-row: 3 / -3;
+
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+#external-resources {
+  border: 2px solid green;
+  grid-column: 1 / 3;
+  grid-row: -5 / -1;
+}
