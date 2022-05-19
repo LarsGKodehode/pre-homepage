@@ -46,6 +46,14 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--color-accent);
+
+  /* enforces scroll snapping behavior */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-snap-point {
+  scroll-snap-align: start;
 }
 
 /* Typography */
@@ -81,11 +89,11 @@ a:visited {
 
 @media (any-hover) {
   a:hover {
-
+  transform: translate(1em, 1em, 1em);
 }}
 
 a:active {
-
+  transform: translate(.5em, .5em, .5em);
 }
 
 /* landing point screen container */
@@ -95,6 +103,7 @@ a:active {
   align-items: center;
   box-sizing: border-box;
 }
+
 
 h1 {
   text-align: center;
@@ -116,13 +125,13 @@ h1 {
 
 /* navigation interface */
 #navigation-container {
-  border: 2px solid red;
   /* fixed layout position */
   position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0px;
   left: 0px;
+ 
   /* content layout placement */
   display: grid;
   grid-template-columns: repeat(20, 1fr);
@@ -134,33 +143,45 @@ h1 {
 }
 
 #logo-link {
-  width: 100%;
-  aspect-ratio: 1/1;
   border: 2px solid green;
+  /* placement of item in grid */
   grid-column: 1 / 3;
   grid-row: 1 / 3;
+  /* size of element */
+  width: 100%;
+  aspect-ratio: 1/1; /* caniuse.com shows pretty good coverage for this */
 }
 
 #searchbar {
   border: 2px solid green;
-  height: 3rem;
-  padding: .5em 4em;
+  /* placement of item in grid */
   grid-column: 7 / 16;
   grid-row: 1 / 3;
+  /* size of element */
+  height: 3rem;
+  border-radius: 0px 0px 4em 4em;
+  padding: .5em 4em;
 }
 
 #nav-bar {
   border: 2px solid green;
-  grid-column: -1 / -3;
+  /* placement of item in grid */
+  grid-column: -1 / -2;
   grid-row: 3 / -3;
 
+  /* placement of content */
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: space-evenly;
+}
+
+li {
+  list-style-type: none;
 }
 
 #external-resources {
   border: 2px solid green;
-  grid-column: 1 / 3;
+  /* placement of item in grid */
+  grid-column: 1 / 2;
   grid-row: -5 / -1;
 }

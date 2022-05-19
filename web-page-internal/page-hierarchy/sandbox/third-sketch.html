@@ -14,12 +14,12 @@
 <body data-theme="theme-dark">
 
   <!-- entrypoint content -->
-  <div id="entrypoint-container">
+  <div id="entrypoint-container" class="scroll-snap-point">
     <h1><a href="third-sketch.html">WELCOME</a></h1>
   </div>
 
-  <!-- carusel -->
-  <div id="carusel-container">
+  <!-- portefolio carusel -->
+  <section id="carusel-container" class="scroll-snap-point">
     <div id="carusel">
 
       <!-- project 1 -->
@@ -56,22 +56,43 @@
       </span>
 
     </div>
-  </div>
+  </section>
 
   <!-- footer -->
-  <footer id="footer">
+  <footer id="footer" class="scroll-snap-point">
 
   </footer>
 
   <!-- seperate container for navigation -->
   <nav id="navigation-container">
+
+    <!-- contains logo and link to frontpage -->
     <div id="logo-link">LOGO</div>
-    <div id="searchbar">SEARCH</div>
+    
+    <!-- top search bar -->
+    <div id="searchbar">
+      <!-- search icon -->
+      <span>
+
+      </span>
+      <!-- search field -->
+      <span>
+        <input id="search-bar" type="text" placeholder="query here">
+      </span>
+      <!-- theme switcher -->
+      <span>
+
+      </span>
+    </div>
+
+    <!-- internal page navigation -->
     <menu id="nav-bar">
       <li class="nav-bar-icon"><a href="" class="nav-bar-link">1</a></li>
       <li class="nav-bar-icon"><a href="" class="nav-bar-link">2</a></li>
       <li class="nav-bar-icon"><a href="" class="nav-bar-link">3</a></li>
     </menu>
+
+    <!-- external resources "github", "linkdin profile" -->
     <menu id="external-resources">EXTERNAL</menu>
   </nav>
 
