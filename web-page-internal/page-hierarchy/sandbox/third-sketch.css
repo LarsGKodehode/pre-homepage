@@ -3,14 +3,17 @@ body {
 
   margin: 0px;
   padding: 0px 3rem;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   background-color: var(--color-5);
   color: var(--color-text-1);
-
+  
+  /* MOVE: need to be in a wrapper around the content */
   /* enforces scroll snapping behavior */
-  overflow-y: scroll;
+  height: 100vh;
+  overflow: scroll;
   scroll-snap-type: y mandatory;
+  /* MOVE: need to be in a wrapper around the content */
 }
 
 .scroll-snap-point {
@@ -61,6 +64,8 @@ a:active {
 #entrypoint-container {
   height: 100vh;
   background-color: var(--color-2);
+  background-color: linear-gradient(90deg, black 100%, transparent 100%);
+  background-color: linear-gradient(270deg, black 100%, transparent 100%);
   align-items: center;
   box-sizing: border-box;
 }
