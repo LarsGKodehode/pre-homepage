@@ -97,9 +97,7 @@ function oppgave3() {
 let nyTekst = "";
 
 function oppgave4() {
-  for (streng of strengUtdrag) {
-    nyTekst += ` ${streng}.`; // konkatenerer strengene med forutgående mellomrom og punktum som skille
-  };
+  nyTekst = strengUtdrag.join(" ");
   console.log(nyTekst);
 };
 
@@ -140,6 +138,8 @@ function oppgave6() {
 
 
 
+// ----- DEL 3 -----
+
 // oppgave 7
 // list over alle ordene i tekst streng
 const ordListe = loremStreng.split(" ");
@@ -169,6 +169,8 @@ function oppgave7() {
 };
 
 
+
+// ----- DEL 4 -----
 
 // oppgave 8
 const nyttTall = 6; // tallet vi ønsker å overskrive med
