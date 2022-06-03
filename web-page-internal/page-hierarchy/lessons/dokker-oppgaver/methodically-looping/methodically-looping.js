@@ -21,9 +21,9 @@ function oppgave1() {
   const loremStrengOrd = loremStreng.split("");
 
   if (loremStrengOrd.length > maksOrd) {
-    console.log(`Strengen er lengre enn ${maksOrd} ord, med sine ${loremStrengOrd.length} ord`);
+    render(targetPlane, `Strengen er lengre enn ${maksOrd} ord, med sine ${loremStrengOrd.length} ord`);
   } else {
-    console.log(`Strengen har ${loremStrengOrd.length} ord, det er mindre enn ${maksOrd} ord`);
+    render(targetPlane, `Strengen har ${loremStrengOrd.length} ord, det er mindre enn ${maksOrd} ord`);
   };
 };
 
@@ -32,7 +32,7 @@ function oppgave1() {
 // oppgave 2
 function oppgave2() {
   for (let i = 1; i <= 10; i++) {
-    console.log(i);
+    render(targetPlane, i);
   };
 };
 
@@ -89,7 +89,7 @@ function oppgave3() {
       };
     });
   };
-  console.log(strengUtdrag);
+  render(targetPlane, strengUtdrag);
 };
 
 
@@ -99,7 +99,7 @@ let nyTekst = "";
 
 function oppgave4() {
   nyTekst = strengUtdrag.join(" ");
-  console.log(nyTekst);
+  render(targetPlane, nyTekst);
 };
 
 
@@ -118,7 +118,7 @@ function oppgave5() {
   for (i in strengUtvalg) {
     oversattTekst = oversattTekst.replaceAll(strengUtvalg[i], strengUtvalgOversatt[i]);
   };
-  console.log(oversattTekst);
+  render(targetPlane, oversattTekst);
 };
 
 
@@ -153,9 +153,9 @@ function oppgave7() {
     nyListeTall[i] = Math.floor(Math.random() * 1000);
   };
 
-  console.log(`\nTi tilfeldige tall:`)
+  render(targetPlane, `\nTi tilfeldige tall:`)
   for (i in nyListeTall) {
-    console.log(`${i} : ${nyListeTall[i]}`);
+    render(targetPlane, `${i} : ${nyListeTall[i]}`);
   };
 
   for (let i = 0; i < 10; i++) {
@@ -163,9 +163,9 @@ function oppgave7() {
     nyListeOrd[i] = ordListe[tilfeldigIndeks];
   };
 
-  console.log(`\nTi tilfeldige ord:`)
+  render(targetPlane, `\nTi tilfeldige ord:`)
   for (i in nyListeOrd) {
-    console.log(`${i} : ${nyListeOrd[i]}`);
+    render(targetPlane, `${i} : ${nyListeOrd[i]}`);
   };
 };
 
@@ -183,9 +183,9 @@ function oppgave8() {
     nyListeTall.fill(nyttTall, i, i + 1); // bruker en array.methode for å sette tallet
   };
 
-  console.log(`\nAlle tallene, bortsett fra første og siste er nå satt til ${nyttTall}:`)
+  render(targetPlane, `\nAlle tallene, bortsett fra første og siste er nå satt til ${nyttTall}:`)
   for (i in nyListeTall) {
-    console.log(`${i} : ${nyListeTall[i]}`);
+    render(targetPlane, `${i} : ${nyListeTall[i]}`);
   };
 };
 
@@ -195,7 +195,7 @@ function oppgave8() {
 function kjørOppgaver(pakke) {
   switch (typeof (pakke)) {
     case "function": // kjører funksjonen
-      console.log(`\nkjører: ${pakke.name}`);
+      render(targetPlane, `\nkjører: ${pakke.name}`);
       pakke();
       break;
     case "object": // leter dypere i pakken
@@ -204,10 +204,10 @@ function kjørOppgaver(pakke) {
       };
       break;
     case "string": // logger strenger
-      console.log(pakke);
+      render(targetPlane, pakke);
       break;
     default: // alt annet
-      console.log(`"${typeof (pakke)}" er ikke et akseptert argument for "${kjørOppgaver.name}"`);
+      render(targetPlane, `"${typeof (pakke)}" er ikke et akseptert argument for "${kjørOppgaver.name}"`);
   };
 };
 
@@ -229,6 +229,40 @@ const oppgaver = [
   oppgave8,
 ];
 
-//console.clear();
+// render target
+const targetPlane = document.getElementById("console-display");
+
+// render/insert in html element
+function render(target, toDisplay) {
+  let renderChunk = [];
+  renderChunk.push(toDisplay);
+  
+  publish(target, renderChunk);
+};
+
+function publish(target, texts) {
+  const fragment = new DocumentFragment();
+  const node = document.createElement("p");
+  
+  for (text of texts) {
+    node.textContent += text;
+  };
+  
+  fragment.appendChild(node);
+  target.appendChild(fragment);
+};
+
+function programClear() {
+  while(targetPlane.firstChild) {
+    targetPlane.removeChild(targetPlane.firstChild);
+  };
+};
+
 // bruk listen over oppgaver eller enkelt elementer som argumenter
-kjørOppgaver(oppgaver);
+function programRun() {kjørOppgaver(oppgaver)};
+
+// grab handlers
+const inputRun = document.getElementById("button-run");
+inputRun.addEventListener("click", programRun);
+const inputClear = document.getElementById("button-clear");
+inputClear.addEventListener("click", programClear);
