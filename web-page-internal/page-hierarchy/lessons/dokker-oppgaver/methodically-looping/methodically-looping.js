@@ -14,7 +14,19 @@
 
 // oppgave 1
 const loremStreng =
-  "Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien. Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet, da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok. Lorem Ipsum har tålt tidens tann usedvanlig godt, og har i tillegg til å bestå gjennom fem århundrer også tålt spranget over til elektronisk typografi uten vesentlige endringer. Lorem Ipsum ble gjort allment kjent i 1960-årene ved lanseringen av Letraset-ark med avsnitt fra Lorem Ipsum, og senere med sideombrekkingsprogrammet Aldus PageMaker som tok i bruk nettopp Lorem Ipsum for dummytekst.";
+  `
+  Lorem Ipsum er rett og slett dummytekst fra og for trykkeindustrien.
+  Lorem Ipsum har vært bransjens standard for dummytekst helt siden 1500-tallet,
+  da en ukjent boktrykker stokket en mengde bokstaver for å lage et prøveeksemplar av en bok.
+  Lorem Ipsum har tålt tidens tann usedvanlig godt,
+  og har i tillegg til å bestå gjennom fem århundrer også tålt spranget over til elektronisk typografi uten vesentlige endringer.
+  Lorem Ipsum ble gjort allment kjent i 1960-årene ved lanseringen av Letraset-ark med avsnitt fra Lorem Ipsum,
+  og senere med sideombrekkingsprogrammet Aldus PageMaker som tok i bruk nettopp Lorem Ipsum for dummytekst.
+  `;
+  
+function init() {
+    render(targetPlane, loremStreng);  
+};
 
 function oppgave1() {
   const maksOrd = 30;
@@ -214,6 +226,8 @@ function kjørOppgaver(pakke) {
 
 // list over oppgaver, med streng skiller
 const oppgaver = [
+  "\n\n\n--- Warming Up ---",
+  init,
   "\n\n\n----- Del 1 ------",
   oppgave1,
   oppgave2,
@@ -222,7 +236,7 @@ const oppgaver = [
     oppgave5,
   ],
   "\n\n\n----- Del 2 ------",
-  //oppgave6,
+  oppgave6,
   "\n\n\n----- Del 3 ------",
   oppgave7,
   "\n\n\n----- Del 4 ------",
