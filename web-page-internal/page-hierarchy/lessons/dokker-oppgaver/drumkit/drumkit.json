@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Bass Drum",
+    "type": "floor",
+    "icon": "bass-drum.svg",
+    "sound": "deep-bass.ogg",
+  },
+
+  {
+    "name": "Floor Tom",
+    "type": "tom",
+    "icon": "floor-tom.svg",
+    "sound": "floor-tom.ogg",
+  },
+
+  {
+    "name": "Medium Tom",
+    "type": "tom",
+    "icon": "medium-tom.svg",
+    "sound": "medium-tom.ogg",
+  },
+
+  {
+    "name": "Small Tom",
+    "type": "tom",
+    "icon": "small-tom.svg",
+    "sound": "small-tom.ogg",
+  },
+
+  {
+    "name": "Snare Drum",
+    "type": "snare",
+    "icon": "snare-drum-svg",
+    "sound": "snare-drum.ogg",
+  },
+
+  {
+    "name": "Crash Cymbal",
+    "type": "cymbal",
+    "icon": "crash-cymbal.svg",
+    "sound": "crash-cymbal.ogg",
+  },
+
+  {
+    "name": "Ride Cymbal",
+    "type": "cymbal",
+    "icon": "ride-cymbal.svg",
+    "sound": "ride-cymbal.ogg",
+  }
+
+  {
+    "name": "Hi-Hat",
+    "type": "cymbal",
+    "icon": "hi-hat.svg",
+    "sound": "hi-hat.ogg",
+  },
+
+  {
+    "name": "Big-Bada-Boom",
+    "type": "explosives",
+    "icon": "explosion.svg",
+    "sound": "explosion.ogg",
+  },
+]
