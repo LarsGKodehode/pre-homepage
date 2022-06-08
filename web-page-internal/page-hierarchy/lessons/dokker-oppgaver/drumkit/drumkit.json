@@ -1,64 +1,72 @@
 [
   {
-    "name": "Bass Drum",
+    "name": "bass-drum",
     "type": "floor",
     "icon": "bass-drum.svg",
-    "sound": "deep-bass.ogg",
+    "sound": "/content/audio/drumkit/bass-drum.wav",
+    "keyCode":"KeyA"
   },
-
+  
   {
-    "name": "Floor Tom",
+    "name": "floor-tom",
     "type": "tom",
     "icon": "floor-tom.svg",
-    "sound": "floor-tom.ogg",
+    "sound": "/content/audio/drumkit/tom-floor.wav",
+    "keyCode":"KeyS"
   },
-
+  
   {
-    "name": "Medium Tom",
+    "name": "clap",
+    "type": "cymbal",
+    "icon": "cymbal-clap.svg",
+    "sound": "/content/audio/drumkit/cymbal-clap.wav",
+    "keyCode":"KeyD"
+  },
+  
+  {
+    "name": "tink",
     "type": "tom",
-    "icon": "medium-tom.svg",
-    "sound": "medium-tom.ogg",
+    "icon": "tink.svg",
+    "sound": "/content/audio/drumkit/tink.wav",
+    "keyCode":"KeyF"
   },
-
+  
   {
-    "name": "Small Tom",
-    "type": "tom",
-    "icon": "small-tom.svg",
-    "sound": "small-tom.ogg",
-  },
-
-  {
-    "name": "Snare Drum",
+    "name": "snare-drum",
     "type": "snare",
     "icon": "snare-drum-svg",
-    "sound": "snare-drum.ogg",
+    "sound": "/content/audio/drumkit/snare-snare.wav",
+    "keyCode":"KeyG"
   },
-
+  
   {
-    "name": "Crash Cymbal",
+    "name": "open-hat",
     "type": "cymbal",
-    "icon": "crash-cymbal.svg",
-    "sound": "crash-cymbal.ogg",
+    "icon": "open-hat.svg",
+    "sound": "/content/audio/drumkit/cymbal-open-hat.wav",
+    "keyCode":"KeyG"
   },
 
   {
-    "name": "Ride Cymbal",
+    "name": "ride-cymbal",
     "type": "cymbal",
     "icon": "ride-cymbal.svg",
-    "sound": "ride-cymbal.ogg",
-  }
-
+    "sound": "/content/audio/drumkit/cymbal-ride.wav",
+    "keyCode":"KeyH"
+  },
+  
   {
-    "name": "Hi-Hat",
+    "name": "hi-hat",
     "type": "cymbal",
     "icon": "hi-hat.svg",
-    "sound": "hi-hat.ogg",
+    "sound": "/content/audio/drumkit/cymbal-hi-hat.wav",
+    "keyCode":"KeyJ"
   },
-
+    
   {
-    "name": "Big-Bada-Boom",
+    "name": "big-bada-boom",
     "type": "explosives",
     "icon": "explosion.svg",
-    "sound": "explosion.ogg",
-  },
+    "keyCode":"KeyL"
+  }
 ]

@@ -1,122 +1,40 @@
-let keyRegister = {};
-let drumKit = [];
+// global variables
+let keyRegister = {}; // holds keybinds
+let drumKit = []; // holds list of drums in kit
+// handles
+const drumkitWrapper = document.getElementById("drumkit-wrapper");
+const drumkitJSON = `http://127.0.0.1:5500/page-hierarchy/lessons/dokker-oppgaver/drumkit/drumkit.json`
 
+
+
+// drum object
 class drum {
-  // create drums
-  constructor(name, type, icon, sound, keyCode) {
-    this.name = name;
-    this.type = type; // instrument group
-    this.icon = icon; // icon path
-    this.sound = sound; // sound path
-    this.keyCode = keyCode; // key to listen for
+  constructor(object) {
+    for (const field in object) {
+      if(field === "sound") {
+        this[field] = new Audio(object[field]);
+        continue;
+      };
+      this[field] = object[field];
+    };
   };
-
-  playSound =  () => this.sound.play();
-};
-
-
-
-/*
-// trying to import json
-document.getElementById("drumkit-file").addEventListener("change", handleFiles, false);
-
-function handleFiles() {
-  const fileToRead = this.files[0];
-  let readFile = new FileReader();
-  console.log("reading file");
-  readFile.onload = (e) => {
-    let content = e.target.result;
-    console.log(content);
+  
+  // playing the drums
+  playSound() {
+    this.sound.play();
+    console.log(`Playing the:\t ${this.name}`);
   };
-};
-*/
-
-
-
-drumKit.push(new drum(
-  "bass-drum",
-  "floor",
-  "bass-drum.svg",
-  new Audio("/content/audio/drumkit/bass-drum.wav"),
-  "KeyA",
-));
-  
-drumKit.push(new drum(
-  "floor-tom",
-  "tom",
-  "floor-tom.svg",
-  new Audio("/content/audio/drumkit/tom-floor.wav"),
-  "KeyS",
-));
-  
-drumKit.push(new drum(
-  "clap",
-  "cymbal",
-  "cymbal-clap.svg",
-  new Audio("/content/audio/drumkit/cymbal-clap.wav"),
-  "KeyD",
-));
-  
-drumKit.push(new drum(
-  "tink",
-  "tom",
-  "tink.svg",
-  new Audio("/content/audio/drumkit/tink.wav"),
-  "KeyF",
-));
-  
-drumKit.push(new drum(
-  "snare-drum",
-  "snare",
-  "snare-drum-svg",
-  new Audio("/content/audio/drumkit/snare-snare.wav"),
-  "KeyG",
-));
-  
-drumKit.push(new drum(
-  "open-hat",
-  "cymbal",
-  "open-hat.svg",
-  new Audio("/content/audio/drumkit/cymbal-open-hat.wav"),
-  "KeyG",
-));
-
-drumKit.push(new drum(
-  "ride-cymbal",
-  "cymbal",
-  "ride-cymbal.svg",
-  new Audio("/content/audio/drumkit/cymbal-ride.wav"),
-  "KeyH",
-));
-  
-drumKit.push(new drum(
-  "hi-hat",
-  "cymbal",
-  "hi-hat.svg",
-  new Audio("/content/audio/drumkit/cymbal-hi-hat.wav"),
-  "KeyJ",
-));
-    
-drumKit.push(new drum(
-  "big-bada-boom",
-  "explosives",
-  "explosion.svg",
-  "explosion.ogg",
-  "KeyL"
-));
-   
-// initialize controll
-function playDrum (drum) {
-  drum.sound.play();
 };
 
 // keyboard input
 document.addEventListener("keydown", (keyDownEvent) => {
+  if (typeof(keyRegister[`${keyDownEvent.code}`]) === "function"){
   keyRegister[`${keyDownEvent.code}`]();
+  };
 });
 
 // install drums
-function addDrums(drums, target) {
+function initDrumkit(drums, target) {
   const fragment = new DocumentFragment();
   const node = document.createElement("div");
   node.id = "drum-kit"
@@ -127,10 +45,10 @@ function addDrums(drums, target) {
     adjustMeta(drum, newDrum);
     node.appendChild(newDrum);
     
-    // add on clik for drum
-    newDrum.addEventListener("click", () => playDrum(drum));
+    // add on click for drum
+    newDrum.addEventListener("click", () => drum.playSound());
     // add keybeinding for drum
-    keyRegister[`${drum.keyCode}`] = drum.playSound;
+    keyRegister[`${drum.keyCode}`] = () => drum.playSound();
   };
   
   fragment.appendChild(node);
@@ -143,5 +61,13 @@ function adjustMeta(drum, newDrum) {
   newDrum.textContent = drum.icon;
 };
 
-const drumKitWrapper = document.getElementById("drumkit-wrapper");
-addDrums(drumKit, drumKitWrapper);
+// fetch drumkit file
+fetch(drumkitJSON)
+  .then(response => response.json())
+  .then((data) => {
+    for (entry of data) {
+      drumKit.push(new drum(entry));
+    };
+  // order instalation of drums
+  initDrumkit(drumKit, drumkitWrapper);
+  });

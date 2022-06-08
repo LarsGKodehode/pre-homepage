@@ -11,15 +11,17 @@ body {
 }
 
 #drum-kit-wrapper {
-  max-height: 80vh;
-  max-width: 80vw;
+  max-height: 60vh;
+  max-width: 60vw;
 }
 
 #drum-kit {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4em;
+  gap: 10%;
   margin: 5em;
+  max-height: 80%;
 }
 
 .sound-tool {
@@ -31,14 +33,17 @@ body {
   color: beige;
   text-align: center;
 
-  padding: 2em;
+  padding: 10%;
 
-  min-height: 10em;
-  min-height: 10em;
-  max-width: 10em;
-  max-height: 10em;
+  width: fit-content;
 }
 
 .sound-tool:hover {
   border: blue 2px solid;
 }
+
+#gui-buttons-wrapper {
+  max-height: 30vh;
+  width: 100%;
+}
+
