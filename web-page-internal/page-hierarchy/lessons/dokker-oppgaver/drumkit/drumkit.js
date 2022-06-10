@@ -26,8 +26,8 @@ class drum {
 
 // keyboard input
 document.addEventListener("keydown", (keyDownEvent) => {
-  if (typeof(keyRegister[`${keyDownEvent.code}`]) === "function"){
-  keyRegister[`${keyDownEvent.code}`]();
+  if (typeof(keyRegister[keyDownEvent.code]) === "function"){
+  keyRegister[keyDownEvent.code]();
   };
 });
 
@@ -37,7 +37,7 @@ function initDrumkit(drums, target) {
   let node = document.createElement("div");
   node.id = "drum-kit"
   
-  // creates every drum in kit
+  // ataches every drum in kit
   for (const drum of drums) {
     attachDrum(drum, node);
   };
@@ -51,7 +51,7 @@ function attachDrum(drum, node) {
   let newDrum = document.createElement("div");
   newDrum.id = drum.name;
   newDrum.className = `${drum.type} instrument`;
-  newDrum.innerHTML = `${drum.name}<br>Keyboard shortcut:<br>${drum.inputKey.charAt(3)}`;
+  newDrum.innerHTML = `${drum.name}<br>shortcut:<br>${drum.inputKey.charAt(3)}`;
   node.appendChild(newDrum);
 
   // bind events
@@ -59,10 +59,10 @@ function attachDrum(drum, node) {
 };
 
 function bindInputEvents(drum, newDrum) {
-  // add on click for drum
+  // add on click
   newDrum.addEventListener("click", () => drum.playSound());
-  // add keybeinding for drum
-  keyRegister[`${drum.inputKey}`] = () => drum.playSound();
+  // register keybeinding
+  keyRegister[drum.inputKey] = () => drum.playSound();
 }
 
 // TODO: implement a generic JSON grabber

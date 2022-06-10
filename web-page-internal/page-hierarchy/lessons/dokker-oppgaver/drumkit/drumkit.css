@@ -53,9 +53,10 @@ li {
 .icon-standard {
   /* sets the color of the svg image */
   filter: invert(13%) sepia(32%) saturate(3399%) hue-rotate(254deg) brightness(93%) contrast(106%);
+  fill: red;
 
-  width: 6em;
-  height: 6em;
+  width: 5em;
+  height: 5em;
 }
 
 @media (any-hover) {
@@ -63,6 +64,8 @@ li {
     filter: drop-shadow(0 0 0.75rem crimson);
   }
 }
+
+
 
 #drumkit-wrapper {
   grid-column: 2 / 3;
@@ -96,7 +99,7 @@ justify-self: center;
   justify-content: center;
   align-items: center;
 
-  height: 100%;
+  aspect-ratio: 1 / 1;
   width: 100%;
 
   padding: 0px 10%;
