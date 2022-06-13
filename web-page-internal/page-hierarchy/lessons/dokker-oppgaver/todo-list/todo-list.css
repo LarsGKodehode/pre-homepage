@@ -1,0 +1,212 @@
+/* 
+Content:
+  1. Page Defaults
+  2. Header Section
+  3. List Section
+  4. Interactive Elements
+ */
+
+/* 1. PAGE DEFAULTS */
+* {
+  /* hack to set size measureing to somthing more sane */
+  box-sizing: border-box;
+}
+
+html {
+  /* remove margin and fill screen */
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
+
+  /* default background color */
+  background-color: var(--color-basic-d1);
+  color: var(--color-basic-font-d1);
+}
+
+body {
+  /* remove margin and fill screen */
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
+
+  /* flow control and position */
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+}
+
+/* typography */
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+p {
+  font-size: var(--font-size-p);
+}
+
+small {
+  font-size: var(--font-size-small);
+}
+
+
+
+/* 2. HEADER SECTION */
+#header-wrapper {
+  /* position */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 2em;
+  /* fixes header to top */
+  position: sticky;
+  top: 0px;
+
+  background-color: var(--color-basic-d2);
+  color: var(--color-basic-font-d2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+}
+
+#header-wrapper > h1 {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, .75);
+  margin: 1rem auto;
+}
+
+
+
+/* 3. LIST SECTION */
+#list-wrapper {
+  width: 100%;
+  margin: 0px 10%;
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+.list-element-wrapper {
+  /* position */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  /* size */
+  width: 100%;
+  height: 6em;
+  padding: .2em 1em;
+  margin-bottom: 2px;
+
+  /* color */
+  background-color: var(--color-basic-l1);
+  color: var(--color-basic-font-l1);
+
+  /* effects */
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+}
+
+.list-elements-text {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+}
+
+.list-elements-text > p, small {
+  margin: 0px;
+}
+
+.list-elements-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+/* 4. INTERACTIVE ELEMENTS */
+.input-text {
+  border-radius: 50px;
+  padding: .1em 1em;
+  margin-bottom: 1em;
+  width: 80%;
+
+  background-color: var(--color-basic-l2);
+  border: solid 2px rgba(0, 0, 0, 0.5);
+  outline: none;
+
+  text-align: center;
+}
+
+.input-text:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.button {
+  padding: .5em 1em;
+  margin: .1em;
+
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (any-hover) {
+  .button:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.button:active {
+  border-color: rgba(0, 0, 0, 0.2);
+
+  box-shadow: 0px 2px 6px inset rgba(0, 0, 0, 0.5);
+}
+
+
+.button-submit {
+  background-color: var(--color-actions-submit);
+
+  border-radius: 20px;
+}
+
+.button-done {
+  background-color: var(--color-actions-submit);
+}
+
+.button-delete {
+  background-color: var(--color-actions-dangerous);
+
+  padding: .25em .5em;
+
+  font-size: var(--font-size-small);
+}
+
+.button-add-details {
+  /* positioning */
+  margin-bottom: 1em;
+  padding: .1em;
+
+  font-size: var(--font-size-small);
+}
+
+@media (any-hover) {
+  .button-add-details:hover {
+    filter: brightness(400%);
+  }
+}
+
+.button-add-details {
+
+}

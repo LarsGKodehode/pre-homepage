@@ -7,27 +7,40 @@
 
   <link rel="icon" type="image/svg" href="/content/icon/icon-original.svg">
 
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quantico&display=swap">
+  
+  <link rel="stylesheet" href="todo-list-styles.css">
   <link rel="stylesheet" href="todo-list.css">
 
   <script defer src="todo-list.js"></script>
 </head>
-<body>
 
+<body>
   <div id="header-wrapper">
-    <h1>--- TASKS ---</h1>
-    <input type="text" name="input tasks here" id="input-field" placeholder="Type task name here...">
+    <h1>TASKS</h1>
+    <input type="text" class="input-text" id="input-field" name="input tasks here" placeholder="Type task name here...">
+    <input type="button" class="button button-submit" value="SUBMIT">
   </div>
 
   <div id="list-wrapper">
     <ul id="task-list-insertion-point">
-      <li class="task-element">
-        <div>
 
+      <!--  test element -->
+      <li class="list-element-wrapper">
+        <div class="list-elements-text">
+          <p>Repair car</p>
+          <small class="button-add-details"><u>Add details</u></small>
         </div>
-        <div>
-          
+
+        <div class="list-elements-buttons-wrapper">
+          <input type="button" class="button button-done" value="DONE">
+          <input type="button" class="button button-delete" value="DELETE">
         </div>
       </li>
+
     </ul>
   </div>
   
