@@ -120,16 +120,25 @@ li {
  display: flex;
  flex-direction: column;
  justify-content: space-between;
+
+ overflow: hidden;
 }
 
 .list-elements-text > p, small {
   margin: 0px;
 }
 
+.list-elements-text > p {
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
 .list-elements-buttons-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
 }
 
 
@@ -176,7 +185,8 @@ li {
 
 
 .button-submit {
-  background-color: var(--color-actions-submit);
+  background-color: var(--color-actions-neutral);
+  color: var(--color-actions-font-neutral);
 
   border-radius: 20px;
 }
@@ -186,11 +196,13 @@ li {
 }
 
 .button-delete {
-  background-color: var(--color-actions-dangerous);
+  width: min-content;
 
-  padding: .25em .5em;
-
+  padding: .1em .2em;
+  
   font-size: var(--font-size-small);
+
+  background-color: var(--color-actions-dangerous);
 }
 
 .button-add-details {

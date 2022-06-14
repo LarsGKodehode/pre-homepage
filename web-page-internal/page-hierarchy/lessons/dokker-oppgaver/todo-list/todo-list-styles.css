@@ -45,6 +45,8 @@ Content:
   /* submit */
   --color-actions-submit: #2CFF5B;
   --color-actions-font-submit: #00070C;
+  --color-actions-neutral: #37D8D8;
+  --color-actions-font-neutral: #001016;
   --color-actions-dangerous: #D3071F;
   --color-actions-font-dangerous: #B9E7DA;
 }
