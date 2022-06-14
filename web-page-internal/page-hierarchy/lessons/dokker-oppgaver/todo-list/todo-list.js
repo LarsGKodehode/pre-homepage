@@ -1,4 +1,21 @@
-// create and append element to list
+/* CONTENTS:
+  1. Global Variables
+  2. Function to append task
+  3. Helper Functions
+  4. Functionality Functions
+  5. Keyboard Shortcuts
+*/
+
+// ----- 1. Global Variables -----
+const inputField = document.getElementById("input-field");
+const buttonSubmit = document.getElementById("input-button-submit");
+const buttonSort = document.getElementById("button-sort");
+const listTarget = document.getElementById("task-list-insertion-point");
+let taskList = [];
+
+
+
+// ----- 2. Function create list element k -----
 function addListElement(description, target=listTarget) {
   // --- Element Wrapper
   const nodeElementWrapper = {
@@ -6,6 +23,8 @@ function addListElement(description, target=listTarget) {
     className: "list-element-wrapper",
   };
   const elementWrapper = createNode(nodeElementWrapper);
+  // add ordering through hasinh the discription
+  elementWrapper.dataset.hash = simpleHash(description);
 
 
   // --- Overlay
@@ -55,10 +74,6 @@ function addListElement(description, target=listTarget) {
   buttonDone.value = "DONE";
   buttonWrapper.appendChild(buttonDone);
 
-  // add interaction
-  buttonDone.addEventListener("click", (e) => taskComplete(e));
-
-
   // button delete
   const buttonDelete = document.createElement("input");
   buttonDelete.type = "button";
@@ -66,17 +81,17 @@ function addListElement(description, target=listTarget) {
   buttonDelete.value = "DELETE";
   buttonWrapper.appendChild(buttonDelete);
 
-  // add delete interaction
+  // add interactions
+  buttonDone.addEventListener("click", (e) => taskComplete(e));
   buttonDelete.addEventListener("click", (e) => taskDelete(e));
 
-
-  // append to DOM
-  target.appendChild(elementWrapper);
+  // add to task list
+  taskList.push(elementWrapper);
 };
 
 
 
-// helpers
+// ----- 3. Helper Functions -----
 function createNode(createInfo) {
   const newNode = document.createElement(createInfo.type);
   for ([key, value] of Object.entries(createInfo)) {
@@ -86,17 +101,31 @@ function createNode(createInfo) {
   return newNode;
 };
 
+// hashing algorithm
+// TODO: this does not work as intended currently, read some more
+// problem is first characters gets assigned to low values, might just get the value of the 32 first ones
+function simpleHash(string) {
+  let hash = 0;
+  if (string.length === 0) {return hash};
+  for (let i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i) * (string.length - i); // problematic portion
+  };
+  hash |= 0; // casts value to a 32bit int
+  return hash;
+};
 
 
-// functionality
+
+// ----- 4. Funtionality Functions -----
+// function sections
 function taskAdd() {
-  if (inputField.value == /^\s*$/) {return};
+  if (inputField.value == /^\s*$/) {return}; // regex to check for empty string
   addListElement(inputField.value);
   inputField.value = "";
 };
 
 function taskComplete(e) {
-  e.target.parentElement.previousSibling.previousSibling;
+  e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
 };
 
 function taskDelete(e) {
@@ -108,28 +137,43 @@ function focusInput() {
   inputField.focus();
 }
 
-// predefined hotkeys
-let hotkeys = {
-  "KeyF": focusInput,
+// rerenders stored tasks
+function renderTasks() {
+  for (task of taskList) {
+    targetList.appendChild(task);
+  };
 };
 
-document.addEventListener("keydown", (e) => {
-  // check if we have registred a shortcut
-  if (!(e.code in hotkeys)) {return};
-  // disable shortuct if text field is in focus
-  if (!document.activeElement.type === "text") {e.preventDefault();};
-  // run hotkeyed function
-  hotkeys[e.code]();
-});
+// sort tasks
+function sortTasks() {
+  for (node of taskList) {
+    console.log(node);
+    node.style.order = node.dataset.hash;
+    console.log(node);
+  };
+};
 
-
-// document targets
-const listTarget = document.getElementById("task-list-insertion-point");
-const buttonSubmit = document.getElementById("input-button-submit");
-const inputField = document.getElementById("input-field");
-
+// event listener section
 // submit form
 buttonSubmit.addEventListener("click", (e) => {
   if (inputField.value.match(/^\s*$/)) {return}
   taskAdd();
 });
+
+buttonSort.addEventListener("click", (e) => sortTasks());
+
+
+
+// ----- 5. Keyboard Shortcuts -----
+// keybinding listner
+document.addEventListener("keydown", (e) => {
+  if (!(e.code in keybindings)) {return}; // check if we have registred a keybinding
+  if (!document.activeElement.type === "text") {e.preventDefault()}; // prevents hijacking of input if active text input
+  keybindings[e.code](); // run hotkeyed function
+});
+
+// keybindings storage
+let keybindings = {};
+
+// bind keys
+keybindings["KeyF"] = focusInput;
