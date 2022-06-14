@@ -21,9 +21,11 @@
 <body>
   <!-- GUI Section -->
   <section id="header-wrapper">
-    <h1>TASKS</h1>
-    <input type="text" class="input-text" id="input-field" name="input tasks here" placeholder="Type task name here...">
-    <input type="button" class="button button-submit" value="SUBMIT">
+    <form class="form-wrapper">
+      <h1>TASKS</h1>
+      <input type="text" class="input-text" id="input-field" name="task" placeholder="Type task name here..." autofocus autocomplete="off">
+      <input type="submit" class="button button-submit" id="input-button-submit" value="SUBMIT" formmethod="dialog" tabindex="-1">
+    </form>
   </section>
 
   <!-- List Section -->
@@ -31,17 +33,32 @@
     <ul id="task-list-insertion-point">
 
       <!--  test element -->
-      <li class="list-element-wrapper">
-        <div class="list-elements-text">
+      <!-- <li class="list-element-wrapper">
+        <div class="overlay-task-done"></div>
+        <div class="list-element texts-wrapper">
           <p>Repair car</p>
-          <small class="button-add-details"><u>Add details</u></small>
+          <small class="button-add-details">Add details</small>
         </div>
 
-        <div class="list-elements-buttons-wrapper">
+        <div class="list-element buttons-wrapper">
           <input type="button" class="button button-done" value="DONE">
           <input type="button" class="button button-delete" value="DELETE">
         </div>
-      </li>
+      </li> -->
+
+      <!--  test element -->
+      <!-- <li class="list-element-wrapper">
+        <div class="overlay-task-done hidden"></div>
+        <div class="list-element texts-wrapper">
+          <p>Repair car</p>
+          <small class="button-add-details">Add details</small>
+        </div>
+
+        <div class="list-element buttons-wrapper">
+          <input type="button" class="button button-done" value="DONE">
+          <input type="button" class="button button-delete" value="DELETE">
+        </div>
+      </li> -->
 
     </ul>
   </section>

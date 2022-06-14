@@ -65,7 +65,7 @@ function programClear(target) {
 
 
 // ------------------------- attach Siblings ------------------------
-function createNodeShardShard(createInfo) {
+function createNode(createInfo) {
   const newNode = document.createElement(createInfo.type);
   for ([key, value] of Object.entries(createInfo)) {
     if (key === "type") {continue};
@@ -74,16 +74,15 @@ function createNodeShardShard(createInfo) {
   return newNode;
 };
 
-function createNodeShard(createInfo, type="div") {
-  // check if nested
+function createNodeSiblings(createInfo, type="div") {
   if (Array.isArray(createInfo)) {
     const fullNode = document.createElement(type);
     
     for (entry of createInfo) {
-      fullNode.appendChild(createNodeShardShard(entry));
+      fullNode.appendChild(createNodeShard(entry));
     };
     return fullNode;
   };
   
-  return createNodeShardShard(createInfo);
+  return createNodeShard(createInfo);
 };
