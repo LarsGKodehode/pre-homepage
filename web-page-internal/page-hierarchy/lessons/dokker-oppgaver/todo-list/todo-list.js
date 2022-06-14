@@ -31,7 +31,8 @@ function addListElement(description, target=listTarget) {
   // --- Overlay
   const nodeOverlay = {
     nodeType: "div",
-    className: "overlay-task-done hidden",
+    className: "overlay-task-done hidden not-clickable",
+
   };
   elementWrapper.appendChild(createNode(nodeOverlay));
 
@@ -52,12 +53,15 @@ function addListElement(description, target=listTarget) {
   textWrapper.appendChild(createNode(nodeDescriptionElement));
 
   // text details
-  const nodeDetailElement = {
-    nodeType: "small",
-    className: "button-add-details",
-    textContent: "Add details",
-  };
-  textWrapper.appendChild(createNode(nodeDetailElement));
+  /*
+  TODO: not yet implemented
+  */
+  // const nodeDetailElement = {
+  //   nodeType: "small",
+  //   className: "button-add-details",
+  //   textContent: "Add details",
+  // };
+  // textWrapper.appendChild(createNode(nodeDetailElement));
 
   
   //  --- Section Buttons
@@ -124,7 +128,9 @@ function renderTasks() {
 
 
 // ----- 4. Funtionality Functions -----
+
 // function sections
+
 function taskAdd() {
   if (inputField.value == /^\s*$/) {return}; // regex to check for empty string
   // add to task list
@@ -139,6 +145,9 @@ function taskComplete(e) {
   e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
 };
 
+/*
+TODO: actually 'remove element from taskList
+*/
 function taskDelete(e) {
   e.target.parentElement.parentElement.remove();
 };
@@ -152,7 +161,7 @@ function focusInput() {
 
 // submit form
 buttonSubmit.addEventListener("click", (e) => {
-  if (inputField.value.match(/^\s*$/)) {return}
+  if (inputField.value.match(/^\s*$/)) {return} // ignores empty input
   taskAdd();
 });
 
@@ -170,11 +179,11 @@ buttonSort.addEventListener("click", (e) => {
 /*
 currently only handles single key inputs, no "ctrl(cmd) + key" combos
  */
-document.addEventListener("keydown", (key) => {
-  if (!(key.code in keybindings)) {return}; // check if we have registred a keybinding
+document.addEventListener("keydown", (event) => {
+  if (!(event.code in keybindings)) {return}; // check if we have registred a keybinding
   if (document.activeElement.type === "text") {return}; // check if text input is in focus
-  key.preventDefault();
-  keybindings[key.code](); // run hotkeyed function
+  event.preventDefault(); // bypasses default event
+  keybindings[event.code](event); // run hotkeyed function
 });
 
 // keybindings storage
