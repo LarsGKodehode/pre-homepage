@@ -94,7 +94,7 @@ function addListElement(description, target=listTarget) {
 
   // add interactions
   buttonDone.addEventListener("click", (e) => taskComplete(e));
-  buttonDelete.addEventListener("click", (e) => taskDelete(e));
+  buttonDelete.addEventListener("click", (e) => taskDelete(e, description));
 
   // add to DOM
   target.appendChild(elementWrapper);
@@ -141,35 +141,41 @@ function taskAdd() {
   inputField.value = "";
 };
 
+/*
+TODO: this is messy and do not adapt well to change of task element
+*/
 function taskComplete(e) {
   e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
 };
 
-/*
-TODO: actually 'remove element from taskList
-*/
-function taskDelete(e) {
-  e.target.parentElement.parentElement.remove();
+function taskDelete(event, description) {
+  // remove from DOM
+  event.target.parentElement.parentElement.remove();
+  // remove from taskList
+  const index = taskList.indexOf(description);
+  if (index > -1) {taskList.splice(index, 1)};
 };
 
-function focusInput() {
+function focusInput(target, value) {
   inputField.focus();
+};
+
+function sortList() {
+  taskList.sort();
+  renderTasks();
 };
 
 
 // event listener section
 
 // submit form
-buttonSubmit.addEventListener("click", (e) => {
+buttonSubmit.addEventListener("click", () => {
   if (inputField.value.match(/^\s*$/)) {return} // ignores empty input
   taskAdd();
 });
 
 // reorder list
-buttonSort.addEventListener("click", (e) => {
-  taskList.sort();
-  renderTasks();
-});
+buttonSort.addEventListener("click", () => sortList());
 
 
 
