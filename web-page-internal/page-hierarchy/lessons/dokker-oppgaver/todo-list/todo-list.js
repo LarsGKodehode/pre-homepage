@@ -142,7 +142,7 @@ function taskAdd() {
 };
 
 /*
-TODO: this is messy and do not adapt well to change of task element
+TODO: this is messy and do not adapt well to changes of task component
  */
 function taskComplete(e) {
   e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
