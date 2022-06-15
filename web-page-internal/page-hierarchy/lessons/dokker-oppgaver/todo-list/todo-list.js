@@ -136,12 +136,18 @@ function renderTasks() {
 function alphabeticallyAscending(a, b) {
   return a.localeCompare(b);
 };
-sortFunctions.push(alphabeticallyAscending);
+sortFunctions.push({
+    sortFunction: alphabeticallyAscending,
+    iconPath: "/content/icon/actions/sort-alpha-ascending.svg",
+  });
 
 function alphabeticallyDescending(a, b) {
   return b.localeCompare(a);
 };
-sortFunctions.push(alphabeticallyDescending);
+sortFunctions.push({
+    sortFunction: alphabeticallyDescending,
+    iconPath: "/content/icon/actions/sort-alpha-descending.svg",
+  });
 
 
 // ----- 4. Funtionality Functions -----
@@ -156,6 +162,8 @@ function taskAdd() {
   addListElement(inputField.value);
   // clears input field
   inputField.value = "";
+  // resets sort icon to unsorted
+  buttonSort.src = "/content/icon/actions/sort-unsorted.svg";
 };
 
 /*
@@ -178,11 +186,11 @@ function focusInput(target, value) {
 };
 
 /*
-TODO: implement different forms of sort
+TODO: replace cycling hack with linked list
  */
 function sortList() {
-  taskList.sort((a, b) => sortFunctions[currentSortIndex](a, b));
-  // hack beacuse of lack of linked list data structure
+  taskList.sort((a, b) => sortFunctions[currentSortIndex].sortFunction(a, b));
+  buttonSort.src = sortFunctions[currentSortIndex].iconPath;
   if (currentSortIndex === 0) {
     currentSortIndex = 1;
   } else {
