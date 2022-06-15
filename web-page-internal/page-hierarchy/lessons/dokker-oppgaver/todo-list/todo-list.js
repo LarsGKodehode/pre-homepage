@@ -143,7 +143,7 @@ function taskAdd() {
 
 /*
 TODO: this is messy and do not adapt well to change of task element
-*/
+ */
 function taskComplete(e) {
   e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
 };
@@ -153,13 +153,16 @@ function taskDelete(event, description) {
   event.target.parentElement.parentElement.remove();
   // remove from taskList
   const index = taskList.indexOf(description);
-  if (index > -1) {taskList.splice(index, 1)};
+  taskList.splice(index, 1);
 };
 
 function focusInput(target, value) {
   inputField.focus();
 };
 
+/*
+TODO: implement different forms of sort
+ */
 function sortList() {
   taskList.sort();
   renderTasks();
