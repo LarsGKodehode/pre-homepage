@@ -12,6 +12,9 @@ const buttonSubmit = document.getElementById("input-button-submit");
 const buttonSort = document.getElementById("button-sort");
 const listTarget = document.getElementById("task-list-insertion-point");
 let taskList = []; // array to hold tasks for sorting and rerendering
+let sortFunctions = []; // array to hold sorting function to allow cycling through them
+let currentSortIndex = 0;
+
 
 
 
@@ -127,6 +130,20 @@ function renderTasks() {
 };
 
 
+// variuos sorting functions
+
+// alphabetically sorting
+function alphabeticallyAscending(a, b) {
+  return a.localeCompare(b);
+};
+sortFunctions.push(alphabeticallyAscending);
+
+function alphabeticallyDescending(a, b) {
+  return b.localeCompare(a);
+};
+sortFunctions.push(alphabeticallyDescending);
+
+
 // ----- 4. Funtionality Functions -----
 
 // function sections
@@ -164,7 +181,13 @@ function focusInput(target, value) {
 TODO: implement different forms of sort
  */
 function sortList() {
-  taskList.sort();
+  taskList.sort((a, b) => sortFunctions[currentSortIndex](a, b));
+  // hack beacuse of lack of linked list data structure
+  if (currentSortIndex === 0) {
+    currentSortIndex = 1;
+  } else {
+    currentSortIndex = 0;
+  };
   renderTasks();
 };
 
