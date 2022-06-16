@@ -17,7 +17,6 @@ let currentSortIndex = 0;
 
 
 
-
 // ----- 2. Function to append task element -----
 /*
 this function is really messy
@@ -35,7 +34,6 @@ function addListElement(description, target=listTarget) {
   const nodeOverlay = {
     nodeType: "div",
     className: "overlay-task-done hidden not-clickable",
-
   };
   elementWrapper.appendChild(createNode(nodeOverlay));
 
@@ -191,12 +189,14 @@ TODO: replace cycling hack with linked list
 function sortList() {
   taskList.sort((a, b) => sortFunctions[currentSortIndex].sortFunction(a, b));
   buttonSort.src = sortFunctions[currentSortIndex].iconPath;
-  if (currentSortIndex === 0) {
-    currentSortIndex = 1;
+  renderTasks();
+
+  // increment sort function
+  if (currentSortIndex < (sortFunctions.length - 1)) {
+    currentSortIndex += 1;
   } else {
     currentSortIndex = 0;
   };
-  renderTasks();
 };
 
 
