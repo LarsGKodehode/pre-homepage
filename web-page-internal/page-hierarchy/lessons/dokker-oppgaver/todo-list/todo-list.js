@@ -26,6 +26,7 @@ function addListElement(description, target=listTarget) {
   const nodeElementWrapper = {
     nodeType: "li",
     className: "list-element-wrapper",
+    draggable: "true",
   };
   const elementWrapper = createNode(nodeElementWrapper);
 
@@ -89,7 +90,7 @@ function addListElement(description, target=listTarget) {
     type: "button",
     className: "button button-delete",
     value: "DELETE",
-  }
+  };
   const buttonDelete = createNode(nodeButtonDelete);
   buttonWrapper.appendChild(buttonDelete);
 
@@ -137,7 +138,7 @@ function alphabeticallyAscending(a, b) {
 sortFunctions.push({
     sortFunction: alphabeticallyAscending,
     iconPath: "/content/icon/actions/sort-alpha-ascending.svg",
-  });
+});
 
 function alphabeticallyDescending(a, b) {
   return b.localeCompare(a);
@@ -145,7 +146,7 @@ function alphabeticallyDescending(a, b) {
 sortFunctions.push({
     sortFunction: alphabeticallyDescending,
     iconPath: "/content/icon/actions/sort-alpha-descending.svg",
-  });
+});
 
 
 // ----- 4. Funtionality Functions -----
@@ -192,9 +193,9 @@ function sortList() {
   renderTasks();
 
   // increment sort function
-  if (currentSortIndex < (sortFunctions.length - 1)) {
+  if (currentSortIndex < (sortFunctions.length - 1)) { // more sorting function to go through
     currentSortIndex += 1;
-  } else {
+  } else { // this was the last, start over
     currentSortIndex = 0;
   };
 };
