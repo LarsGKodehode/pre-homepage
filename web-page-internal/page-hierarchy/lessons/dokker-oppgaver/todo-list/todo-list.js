@@ -9,8 +9,10 @@
 // ----- 1. Global Variables -----
 const inputField = document.getElementById("input-field");
 const buttonSubmit = document.getElementById("input-button-submit");
-const buttonSort = document.getElementById("button-sort");
 const listTarget = document.getElementById("task-list-insertion-point");
+const buttonSave = document.getElementById("button-save");
+const buttonLoad = document.getElementById("button-load");
+const buttonSort = document.getElementById("button-sort");
 let taskList = []; // array to hold tasks for sorting and rerendering
 let sortFunctions = []; // array to hold sorting function to allow cycling through them
 let currentSortIndex = 0;
@@ -106,6 +108,24 @@ function addListElement(description, target=listTarget) {
 
 // ----- 3. Helper Functions -----
 
+// store taskList locally
+function saveTasks() {
+  console.log("saving");
+  localStorage.setItem("savedTasks", JSON.stringify(taskList));
+};
+
+function loadTasks() {
+  const loadedJSON = localStorage.getItem("savedTasks")
+  if (!loadedJSON) {return};
+  let loadedTasks = [];
+  for (entry of JSON.parse(loadedJSON)) {
+    loadedTasks.push(entry);
+  };
+  taskList.splice(0, taskList.length, ...loadedTasks);
+  renderTasks();
+
+};
+
 // creates a new element from object
 function createNode(createInfo) {
   const newNode = document.createElement(createInfo.nodeType);
@@ -167,7 +187,7 @@ function taskAdd() {
 
 /*
 TODO: this is messy and do not adapt well to changes of task component
- */
+*/
 function taskComplete(e) {
   e.target.parentElement.previousSibling.previousSibling.classList.toggle("hidden");
 };
@@ -186,14 +206,14 @@ function focusInput(target, value) {
 
 /*
 TODO: replace cycling hack with linked list
- */
+*/
 function sortList() {
   taskList.sort((a, b) => sortFunctions[currentSortIndex].sortFunction(a, b));
   buttonSort.src = sortFunctions[currentSortIndex].iconPath;
   renderTasks();
 
   // increment sort function
-  if (currentSortIndex < (sortFunctions.length - 1)) { // more sorting function to go through
+  if (currentSortIndex < (sortFunctions.length - 1)) { // there is  still sorting function left
     currentSortIndex += 1;
   } else { // this was the last, start over
     currentSortIndex = 0;
@@ -210,6 +230,8 @@ buttonSubmit.addEventListener("click", () => {
 });
 
 // reorder list
+buttonSave.addEventListener("click", () => saveTasks());
+buttonLoad.addEventListener("click", () => loadTasks());
 buttonSort.addEventListener("click", () => sortList());
 
 
@@ -219,7 +241,7 @@ buttonSort.addEventListener("click", () => sortList());
 // keybinding listner
 /*
 currently only handles single key inputs, no "ctrl(cmd) + key" combos
- */
+*/
 document.addEventListener("keydown", (event) => {
   if (!(event.code in keybindings)) {return}; // check if we have registred a keybinding
   if (document.activeElement.type === "text") {return}; // check if text input is in focus
