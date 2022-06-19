@@ -12,6 +12,7 @@ class TreeNode {
   addChild(node) {};
   removeAllChildren() {};
   getSize() {};
+  containsFirst(data) {};
 
   set data(data) {
     this.#data = data;
@@ -53,6 +54,10 @@ class TreeNode {
     };
     return size;
   };
+
+  containsFirst(data) {
+
+  };
 };
 
 
@@ -70,7 +75,7 @@ console.log(ancestor);
 console.log(ancestor.data);
 console.log(ancestor.parent);
 console.log(ancestor.children);
-console.log(`==========================\n`);
+console.log(`===========================================`);
 
 // first child
 ancestor.addChild(new TreeNode("child 01"));
@@ -79,7 +84,7 @@ ancestor.addChild(new TreeNode("child 02"));
 console.log(`--- Testing child node 01 ---`);
 console.log(ancestor.children);
 console.log(ancestor.children[0]);
-console.log(`==========================`);
+console.log(`===========================================`);
 
 // grandchildren
 const child01 = ancestor.children[0];
@@ -91,16 +96,26 @@ console.log(`--- Testing grandchildren ---`);
 console.log(ancestor);
 console.log(ancestor.children);
 console.log(grandchild01.data);
-console.log(`==========================`);
+console.log(`===========================================`);
 
 // test size
 console.log(`--- Testing sizeOf ---`);
 console.log(ancestor.getSize());
-console.log(`==========================`);
+console.log(`===========================================`);
+
+// test containsFirst
+console.log(`--- Testing containsFirst ---`);
+console.log(ancestor.containsFirst("grandchild"));
+console.log(`===========================================`);
+
+// test containsEvery
+console.log(`--- Testing containsEvery ---`);
+// console.log(ancestor.containsFirst("grandchild"));
+console.log(`===========================================`);
 
 // remove children
 console.log(`--- Testing clear children ---`);
 console.log(ancestor.children);
 ancestor.removeAllChildren();
 console.log(ancestor.children);
-console.log(`==========================`);
+console.log(`===========================================`);
