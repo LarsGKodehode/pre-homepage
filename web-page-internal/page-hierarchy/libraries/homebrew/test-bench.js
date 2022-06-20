@@ -12,8 +12,8 @@ class TreeNode {
   addChild(node) {};
   removeAllChildren() {};
   getSize() {};
-  containsAny(data) {};
-  containsEvery(data) {};
+  matchAny(data) {};
+  matchEvery(data) {};
 
   set data(data) {
     this.#data = data;
@@ -57,11 +57,11 @@ class TreeNode {
   };
 
   // traversal pattern, Depth First
-  containsAny(data) {
+  matchAny(data) {
     if (this.data === data) {return this};
     if (this.children.length !== 0) { // dive deeper
       for (const child of this.children) {
-        let newMatch = child.containsAny(data);
+        let newMatch = child.matchAny(data);
         if (newMatch) {return newMatch};
       };
     };
@@ -69,12 +69,12 @@ class TreeNode {
   };
 
   // traversal pattern, Depth First
-  containsEvery(data) {
+  matchEvery(data) {
     let matches = [];
     if (this.data === data) {matches.push(this)};
     if (this.children.length !== 0) { // dive deeper
       for (const child of this.children) {
-        matches.push(child.containsEvery(data));
+        matches.push(child.matchEvery(data));
       };
     };
 
@@ -126,17 +126,18 @@ console.log(`--- Testing sizeOf ---`);
 console.log(ancestor.getSize());
 console.log(`================================\n\n`);
 
-// test containsAny
-console.log(`--- Testing containsAny ---`);
-console.log(ancestor.containsAny("ancestor node"));
-console.log(ancestor.containsAny("grandchild 02"));
-console.log(ancestor.containsAny("this should return false"));
+// test matchAny
+console.log(`--- Testing matchAny ---`);
+console.log(ancestor.matchAny("ancestor node"));
+console.log(ancestor.matchAny("grandchild 02"));
+console.log(ancestor.matchAny("this should return false"));
 console.log(`================================\n\n`);
 
-// test containsEvery
-console.log(`--- Testing containsEvery ---`);
-console.log(ancestor.containsEvery("ancestor node"));
-console.log(ancestor.containsEvery("grandchild 02"));
+// test matchEvery
+console.log(`--- Testing matchEvery ---`);
+console.log(ancestor.matchEvery("ancestor node"));
+console.log(ancestor.matchEvery("grandchild 02"));
+console.log(ancestor.matchEvery("this does not exist"));
 console.log(`================================\n\n`);
 
 // remove children

@@ -12,7 +12,8 @@ class TreeNode {
   addChild(node) {};
   removeAllChildren() {};
   getSize() {};
-  containsFirst(data) {};
+  searchAny(data) {};
+  searchEvery(data) {};
 
   set data(data) {
     this.#data = data;
@@ -48,15 +49,39 @@ class TreeNode {
 
   getSize() {
     let size = 1; // counts this node
-    if (this.#children.length === 0) {return size}; // no children
-    for (let child of this.#children) {
+    if (this.children.length === 0) {return size}; // no children
+    for (const child of this.children) {
       size += child.getSize();
     };
     return size;
   };
 
-  containsFirst(data) {
+  // traversal pattern, Depth First
+  searchAny(data) {
+    if (this.data === data) {return this};
+    if (this.children.length !== 0) { // dive deeper
+      for (const child of this.children) {
+        let newMatch = child.searchAny(data);
+        if (newMatch) {return newMatch};
+      };
+    };
+    return false;
+  };
 
+  // traversal pattern, Depth First
+  searchEvery(data) {
+    let matches = [];
+
+    if (this.data === data) {matches.push(this)};
+    if (this.children.length !== 0) {
+      for (const child of this.children) {
+        const match = child.searchEvery(data);
+        if (match && match.length !== 0) {matches.push(match)};
+      };
+    };
+    
+    if (matches.length === 0) {return false}
+    else {return matches};
   };
 };
 
@@ -75,20 +100,21 @@ console.log(ancestor);
 console.log(ancestor.data);
 console.log(ancestor.parent);
 console.log(ancestor.children);
-console.log(`===========================================`);
+console.log(`================================\n\n`);
 
 // first child
 ancestor.addChild(new TreeNode("child 01"));
 ancestor.addChild(new TreeNode("child 02"));
 // tests
-console.log(`--- Testing child node 01 ---`);
+console.log(`--- Testing child node ---`);
 console.log(ancestor.children);
 console.log(ancestor.children[0]);
-console.log(`===========================================`);
+console.log(`================================\n\n`);
 
 // grandchildren
 const child01 = ancestor.children[0];
 child01.addChild(new TreeNode("grandchild 01"));
+child01.addChild(new TreeNode("grandchild 02"));
 child01.addChild(new TreeNode("grandchild 02"));
 const grandchild01 = child01.children[0];
 // tests
@@ -96,26 +122,30 @@ console.log(`--- Testing grandchildren ---`);
 console.log(ancestor);
 console.log(ancestor.children);
 console.log(grandchild01.data);
-console.log(`===========================================`);
+console.log(`================================\n\n`);
 
 // test size
 console.log(`--- Testing sizeOf ---`);
 console.log(ancestor.getSize());
-console.log(`===========================================`);
+console.log(`================================\n\n`);
 
-// test containsFirst
-console.log(`--- Testing containsFirst ---`);
-console.log(ancestor.containsFirst("grandchild"));
-console.log(`===========================================`);
+// test searchAny
+console.log(`--- Testing searchAny ---`);
+console.log(ancestor.searchAny("ancestor node"));
+console.log(ancestor.searchAny("grandchild 02"));
+console.log(ancestor.searchAny("this should return false"));
+console.log(`================================\n\n`);
 
-// test containsEvery
-console.log(`--- Testing containsEvery ---`);
-// console.log(ancestor.containsFirst("grandchild"));
-console.log(`===========================================`);
+// test searchEvery
+console.log(`--- Testing searchEvery ---`);
+console.log(ancestor.searchEvery("ancestor node"));
+console.log(ancestor.searchEvery("grandchild 02"));
+console.log(ancestor.searchEvery("this does not exist"));
+console.log(`================================\n\n`);
 
 // remove children
 console.log(`--- Testing clear children ---`);
 console.log(ancestor.children);
 ancestor.removeAllChildren();
 console.log(ancestor.children);
-console.log(`===========================================`);
+console.log(`================================\n\n`);
