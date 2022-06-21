@@ -1,7 +1,6 @@
 class GenericGraphNode {
   constructor(data) {
     this.data = data;
-    this.edges = [];
   };
 
   #data;
@@ -15,11 +14,17 @@ class GenericGraphNode {
   };
 
   set edges(edge) {
-    this.edges.push(edge);
+    this.#edges.push(edge);
   };
   get edges() {
     return this.#edges;
-  }
+  };
+
+  insertNeighbor(data) {
+    const newNode = new GenericGraphNode(data);
+    this.edges = newNode;
+    newNode.edges = this;
+  };
 };
 
 
@@ -32,15 +37,18 @@ class GenericGraphNode {
 // =======================================
 
 // initial setup
-const graph = new GenericGraphNode(1);
+const firstNode = new GenericGraphNode(1);
 
 console.log(" -------- test 01 --------");
-console.log(graph);
-console.log(graph.data);
-console.log(graph.edges);
+console.log(firstNode);
+console.log(firstNode.data);
+console.log(firstNode.edges.length);
+console.log(firstNode.edges);
 console.log("==========================");
 
 console.log(" -------- test 02 --------");
-
-console.log();
+firstNode.insertNeighbor(2)
+firstNode.insertNeighbor(3)
+console.log(firstNode);
+console.log(firstNode.edges);
 console.log("==========================");
