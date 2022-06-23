@@ -171,7 +171,7 @@ buttonSubmit.addEventListener("click", () => {
   taskAdd();
 });
 
-// reorder list
+// gui functions
 buttonSave.addEventListener("click", () => saveTasks());
 buttonLoad.addEventListener("click", () => loadTasks());
 buttonSort.addEventListener("click", () => sortList());
