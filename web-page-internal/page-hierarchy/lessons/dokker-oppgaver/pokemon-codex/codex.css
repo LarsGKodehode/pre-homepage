@@ -1,0 +1,51 @@
+html {
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0px;
+}
+
+body {
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1em;
+
+  width: calc(100% - 2em);
+  height: calc(100% - 2em);
+
+  margin: 0px;
+
+  background-color: darkgray;
+}
+
+#target-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding: 0 10%;
+
+  overflow-x: auto;
+}
+
+.pokecard {
+  width: fit-content;
+  height: 80%;
+  padding: 1em;
+
+  border: 2px solid rgb(85, 84, 84);
+  border-radius: 10px;
+
+  box-shadow: .25em .25em .25em .25em rgba(0, 0, 0, 0.25);
+}
+
+.pokecard:hover {
+  border: solid 2px white;
+}
