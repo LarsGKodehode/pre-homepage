@@ -23,7 +23,7 @@ let currentSortIndex = 0;
 function addListElement(description, target=listTarget) {
   // element definition
   const newTaskDefinition = `
-  <li class="list-element-wrapper" dragable="true">
+  <li class="list-element-wrapper" dragable="true" data-tooltip="Due: Tomorrow, 12.00>
 
     <div class="overlay-task-done hidden not-clickable"></div>
 
