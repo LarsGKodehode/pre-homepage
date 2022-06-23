@@ -4,4 +4,4 @@ raw-files/
 homepage.code-workspace
 CNAME
 
-.keys/
+*.secrets
