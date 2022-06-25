@@ -49,6 +49,15 @@ async function fetchPokemon(name, appendTarget) {
   appendTarget.appendChild(newCard.cardNode);
 };
 
+async function fetchCodex() {
+  const newIndex = await fetch(`https://pokeapi.co/api/v2`);
+  const newParsedIndex = await newIndex.json();
+
+  for (entry of Object.entries(newParsedIndex)) {
+    console.log(entry);
+  };
+};
+
 // ========================================
 // ----------------- main -----------------
 // ========================================
@@ -68,4 +77,4 @@ const population = 1;
 
 for (let i = 0; i < population; i++) {
   fetchPokemon(randomon(), targetCards);
-}
+};
