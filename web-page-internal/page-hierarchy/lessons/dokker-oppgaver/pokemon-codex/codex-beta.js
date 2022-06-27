@@ -9,31 +9,42 @@ class Codex {
   // members declaration
   #APIEndpoint; // where to get data object
   #codexData = []; // stored data
+  #codexDataIndividual = []; // individual pokemons
   #cacheName; // localSorage key
   #cacheFreshTime; // time before cache is stale, millisecond
-  #cacheFreshness; // last cache timestamp, millisecond 
+  #cacheDataFreshness; // last cache timestamp, millisecond
+  #cacheDetailsFreshness; // last cache timestamp, millisecond
 
   async updateData() {};
   // #loadCache() {};
   // async #fetchResource() {};
   // async #updateCache() {};
   // #cacheStale() {};
+  async updataDataDetails() {};
 
   // setters & getters
   get codexData() {
     return this.#codexData;
   };
 
-  get cacheFreshness() {
-    return this.#cacheFreshness;
+  get codexDataIndividual() {
+    return this.#codexDataIndividual;
   };
 
+  get cacheDataFreshness() {
+    return this.#cacheDataFreshness;
+  };
+
+  get cacheDetailsFreshness() {
+    return this.#cacheDataFreshness;
+  };
+  
   // methods
 
   //TODO: fix sequence of checks, this will always fetch from server at first call
   async updateData() {
     let cache;
-    if (this.#cacheFreshness !== undefined && !this.#cacheStale(this.#cacheFreshness)) {
+    if (this.#cacheDataFreshness !== undefined && !this.#cacheStale(this.#cacheDataFreshness)) {
       console.log("cache exists and is fresh");
       cache = await this.#loadCache();
     } else {
@@ -90,7 +101,14 @@ class Codex {
     };
 
     console.log(`data saved with timestamp ${new Date(timeStamp)}`);
-    this.#cacheFreshness = Date.now();
+    this.#cacheDataFreshness = Date.now();
+  };
+
+  async updataDataDetails() {
+    this.#codexDataIndividual = await Promise.all(this.#codexData.map(async (pokemon) => {
+      const unparsed = await fetch(pokemon.url);
+      return await unparsed.json();
+    }));
   };
 };
 
@@ -104,25 +122,37 @@ let newCodex;
 // DOM elements
 const codexTarget = document.getElementById("target-cards");
 const buttonCreate = document.getElementById(`button-create`);
-const buttonUpdate = document.getElementById(`button-update`);
-const buttonLog = document.getElementById(`button-log`);
+const buttonUpdateData = document.getElementById(`button-update-data`);
+const buttonUpdateDetails = document.getElementById(`button-update-details`);
+const buttonLogData = document.getElementById(`button-log-data`);
+const buttonLogDetails = document.getElementById(`button-log-details`);
 
 // listners
 buttonCreate.addEventListener("click", () => {
   console.log(`creating codex`);
   newCodex = new Codex(codexTarget);
   buttonCreate.disabled = true;
-  buttonUpdate.disabled = false;
-  buttonLog.disabled = false;
-
+  buttonUpdateData.disabled = false;
+  buttonUpdateDetails.disabled = false;
+  buttonLogData.disabled = false;
+  buttonLogDetails.disabled = false;
+g
   console.log(newCodex);
 });
 
-buttonUpdate.addEventListener("click", () => {
+buttonUpdateData.addEventListener("click", () => {
   newCodex.updateData();
+  buttonUpdateDetails.disabled = false;
 });
 
-buttonLog.addEventListener("click", () => {
+buttonUpdateDetails.addEventListener("click", () => {
+  newCodex.updataDataDetails();
+});
+
+buttonLogData.addEventListener("click", () => {
   console.log(newCodex.codexData);
 });
 
+buttonLogDetails.addEventListener("click", () => {
+  console.log(newCodex.codexDataIndividual);
+});
