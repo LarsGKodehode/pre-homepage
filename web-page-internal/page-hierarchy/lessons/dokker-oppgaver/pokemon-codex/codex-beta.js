@@ -1,105 +1,98 @@
 // local storage of pokemons
 class Codex {
-  constructor(target) {
-    this.parent = target;
+  constructor() {
+    this.#APIEndpoint = `https://pokeapi.co/api/v2/pokemon/`;
+    this.#cacheName = `pokeCodex`;
+    this.#cacheFreshTime = 600000;
   };
 
   // members declaration
-  #APIEndpoint = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100`;
-  #parent; // where to return the object
-  #codexData = []; // response parsed to object
-  #cacheName = `pokeCodex`;
-  #cacheFreshTime = 600000; // time before cache is stale
-  #cacheCurrentFreshness; // store last cache timestamp
+  #APIEndpoint; // where to get data object
+  #codexData = []; // stored data
+  #cacheName; // localSorage key
+  #cacheFreshTime; // time before cache is stale, millisecond
+  #cacheFreshness; // last cache timestamp, millisecond 
+
+  async updateData() {};
+  // #loadCache() {};
+  // async #fetchResource() {};
+  // async #updateCache() {};
+  // #cacheStale() {};
 
   // setters & getters
-  set target(parent) {
-    this.#parent = parent;
-  };
-  get target() {
-    return this.#parent;
-  };
-
-  set codexData(object) {
-    this.#codexData = object;
-  };
   get codexData() {
     return this.#codexData;
   };
 
+  get cacheFreshness() {
+    return this.#cacheFreshness;
+  };
+
   // methods
-  async updateCodex(endpoint = this.#APIEndpoint) {
-    // check if local cache exists and is fresh
-    if (!this.loadFromCache()) {
-      console.log("cache nonexistant or stale")
-      const newInfo = await fetch(endpoint);
-      const newParsedInfo = await newInfo.json();
-      /// look for more pokemons
-      if (newParsedInfo.next !== null) {
-        setTimeout(() => {this.updateCodex(newParsedInfo.next)}, 1000);
-      };
-      this.codexData = this.codexData.concat(newParsedInfo.results);
+
+  //TODO: fix sequence of checks, this will always fetch from server at first call
+  async updateData() {
+    let cache;
+    if (this.#cacheFreshness !== undefined && !this.#cacheStale(this.#cacheFreshness)) {
+      console.log("cache exists and is fresh");
+      cache = await this.#loadCache();
+    } else {
+      console.log("cache nonexistant or stale");
+      cache = await this.#fetchResource();
+      this.#updateCache(cache);
     };
-    this.cacheData();
+    this.#codexData = cache;
   };
 
-  async cacheData() {
-    const timeStamp = Date.now();
-    const dataToCache = await JSON.stringify([timeStamp, this.codexData]);
-    const cachedData = await JSON.parse(localStorage.getItem(this.#cacheName));
-    // checks if in cache and cache not stale
-    if (cachedData === null || (cachedData[0] + this.#cacheFreshTime) < timeStamp) {
-      localStorage.setItem(`PokemonCodex`, dataToCache);
-    };
+  async #loadCache() {
+    const localRaw = localStorage.getItem(this.#cacheName);
+    return JSON.parse(localRaw).data;
   };
 
-  loadFromCache() {
-    const cachedData = JSON.parse(localStorage.getItem(this.#cacheName));
-    if(cachedData !== null && (cachedData[0] + this.#cacheFreshTime) < dataToCache[0]) {
-      console.log("cache is fresh")
-      this.codexData = cachedData[1];
+  #cacheStale(timestamp) {
+    if ((Date.now() - this.#cacheFreshTime) < timestamp) {
+      return false;
+    } else {
       return true;
-    } else {return false};
+    };
   };
 
-  #cacheFresh() {
+  async #fetchResource() {
+    let cache = [];
+    let newCache;
+    let iteration = 0;
+    const stride = 100; // how much to fetch each time
+    do {
+      console.log(`fetcing dataset: ${iteration} from server`);
+      const endpoint = this.#APIEndpoint + `?offset=${stride * iteration}&limit=${stride}}`;
+      const newCacheRaw = await fetch(endpoint);
+      newCache = await newCacheRaw.json();
+      cache = cache.concat(newCache.results);
+      iteration++;
+    } while (newCache.next !== null);
+    return cache;
+  };
 
+  async #updateCache(rawCache) {
+    const timeStamp = Date.now();
+    const toStore = JSON.stringify(
+      {
+        "timeStamp": timeStamp,
+        "data": rawCache
+      }
+    );
+
+    try{
+      localStorage.setItem(this.#cacheName, toStore);
+    } catch (exception) {
+      console.warn(exception);
+      return;
+    };
+
+    console.log(`data saved with timestamp ${new Date(timeStamp)}`);
+    this.#cacheFreshness = Date.now();
   };
 };
-
-/*
-class PokemonCard {
-  constructor(pokemon) {
-    this.name = pokemon.name;
-    this.image = pokemon.image;
-    this.updateCard();
-  };
-
-  #name;
-  #imageSrc;
-
-  #cardNode; // HTML node object
-  #cardNodeTemplate = `
-  <div>
-    <h1>${this.name}</h1>
-    <img src=${this.imageSrc}></img>
-  </div>
-  `;
-
-  set cardNode(node) {
-    this.#cardNode = new DOMParser().parseFromString(node).body.firstChild;
-  };
-  get cardNode() {
-    return this.#cardNode;
-  };
-
-  updateCard() {
-
-
-    
-  };
-};
-*/
 
 // ==================================
 // -------------- main --------------
@@ -121,14 +114,15 @@ buttonCreate.addEventListener("click", () => {
   buttonCreate.disabled = true;
   buttonUpdate.disabled = false;
   buttonLog.disabled = false;
+
+  console.log(newCodex);
 });
 
 buttonUpdate.addEventListener("click", () => {
-  newCodex.updateCodex();
+  newCodex.updateData();
 });
 
 buttonLog.addEventListener("click", () => {
   console.log(newCodex.codexData);
 });
 
-// const newCodex = new Codex(codexTarget);
