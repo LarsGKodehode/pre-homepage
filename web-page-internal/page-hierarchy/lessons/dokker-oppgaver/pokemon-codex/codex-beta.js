@@ -136,7 +136,6 @@ buttonCreate.addEventListener("click", () => {
   buttonUpdateDetails.disabled = false;
   buttonLogData.disabled = false;
   buttonLogDetails.disabled = false;
-g
   console.log(newCodex);
 });
 
