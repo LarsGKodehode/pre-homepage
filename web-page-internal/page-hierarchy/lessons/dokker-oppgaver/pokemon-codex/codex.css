@@ -99,10 +99,14 @@ body {
 
 /* fancy decorations */
 .glass.plane { /* don't try figuring this out in here, use external tools */
+  /* glassy gradients */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   linear-gradient(55deg, rgba(119, 69, 69, 0) 21.7%, rgba(196, 169, 169, 0.335) 45.34%, rgba(255, 254, 254, 0.335) 52.23%, rgba(196, 169, 169, 0.335) 58.64%, rgba(119, 69, 69, 0) 79.81%),
   linear-gradient(154.39deg, rgba(255, 255, 255, 0.2) -0.28%, rgba(255, 255, 255, 0) 13.82%, rgba(255, 255, 255, 0) 76.5%, rgba(255, 255, 255, 0.2) 100%),
   linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09));
+
+  /* special stuff */
+  backdrop-filter: blur(8px);
 }
 
 .glass.image {
@@ -111,7 +115,7 @@ body {
 
 /* DEV TOOLING */
 #DEV-GUI {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 30%;
 

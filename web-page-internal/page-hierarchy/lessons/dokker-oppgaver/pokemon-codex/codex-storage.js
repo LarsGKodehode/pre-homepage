@@ -89,6 +89,7 @@ class PokemonCodex {
       const detailsRaw = await fetch(pokemon.url);
       const detailsParsed = await detailsRaw.json();
       // filter out wanted data
+    // !IMPORTANT SECURITY:XSS TODO: sanitize before caching
       const detailsFiltered = {
         "name": detailsParsed.name,
         "order": detailsParsed.order,
@@ -134,7 +135,6 @@ class PokemonCodex {
     };
     this.#currentExperiationDate = currentTime;
   };
-
 };
 
 export default PokemonCodex;
