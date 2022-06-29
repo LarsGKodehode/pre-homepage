@@ -1,0 +1,204 @@
+/* CONTENT
+    - HTML && BODY
+    - GENERAL
+    - GUI
+    - SECTIONS
+    - ELEMENTS
+    !!! (DEV) !!! // this means delete before publishing
+*/
+
+
+/* === HTML && BODY === */
+html {
+width: 100%;
+height: 100%;
+
+margin: 0;
+}
+
+body {
+width: 100%;
+height: 100%;
+
+margin: 0;
+}
+
+
+/* === GENERAL === */
+#main-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+}
+
+.section {
+  height: 100vh;
+}
+
+/* NOT WORKING
+#main-content {
+  scroll-snap-type: y mandatory;
+}
+.snap-point {
+  scroll-snap-align: start;
+}
+*/
+
+.link {
+ color: inherit;
+ text-decoration: none;
+}
+
+/* .link:visited {} */
+
+.link:hover {
+  filter: invert(10);
+}
+
+.link:active {
+  color: black;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+svg {
+  width: min-content;
+  max-width: 100%;
+  height: min-content;
+  max-height: 100%;
+}
+
+.gui.bar {
+  background-color: var(--color-basic-base);
+  color: var(--color-basic-font-base);
+
+  /* border radius when closed */
+  --border-radius-closed: 25% 50%;
+  --border-radius-top-left: ;
+  --border-radius-top-right: 25% 50%;
+  --border-radius-bottom-right: 25% 50%;
+  --border-radius-bottom-left: ;
+  /* border radius when expanded */
+  --border-radius-top-left: ;
+  --border-radius-top-right: 25% 50%;
+  --border-radius-bottom-right: 25% 50%;
+  --border-radius-bottom-left: ;
+}
+
+
+/* === GUI === */
+#gui-overlay {
+  /* lay over page  */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999; /* probably unnecessary due to position in flow*/
+
+  width: 100%;
+  height: 100%;
+
+  /* grid */
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr repeat(3, 2fr) 1fr;
+}
+
+/* == presence == */
+#gui-nav-presence {
+  /* position in grid */
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+
+  /* form */
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: var(--border-radius-closed);
+  border-bottom-right-radius: var(--border-radius-closed);
+}
+
+/* hidey effect */
+#gui-nav-presence {
+  /* setup for transition */
+  position: relative;
+  left: -6vw;
+
+  /* transition properties */
+  /* transition-property: all; */
+  transition-duration: 500ms;
+  /* this delay is "inverted" from the naive thought about how it works */
+  transition-delay: 200ms;
+}
+#gui-nav-presence:hover {
+  /* transition change to */
+  left: 0;
+  border-top-right-radius: 100% 25%;
+  border-bottom-right-radius: 100% 25%;
+
+  /* this delay is "inverted" from the naive thought about how it works */
+  transition-delay: 0s;
+}
+
+#gui-nav-presence > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  margin: 0;
+}
+
+/* == breadcrumbs == */
+#gui-nav-breadcrumbs {
+  /* position in grid */
+  grid-column: 3 / 4;
+  grid-row: 2 / -2;
+
+  /* form */
+  width: 100%;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  border-top-left-radius: var(--border-radius-closed);
+  border-bottom-left-radius: var(--border-radius-closed);
+}
+
+#gui-nav-breadcrumbs > * {
+  width: 100%;
+}
+
+
+/* === SECTIONS === */
+/* == hero == */ 
+#hero {
+  background-image: url(/content/img/home/hero.png);
+}
+
+/* == carusel == */
+#carusel {
+  background-color: var(--color-basic-d2);
+
+}
+
+/* == info == */
+#info {
+  background-image: url(/content/img/home/hero.png);
+
+}
+
+
+/* === ELEMENTS === */
+
+
+/* !!! (DEV) !!! */
+.section {
+  border: solid 1px red;
+}
