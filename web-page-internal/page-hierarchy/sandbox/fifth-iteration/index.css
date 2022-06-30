@@ -3,7 +3,7 @@
     - GENERAL
     - GUI
     - SECTIONS
-    - ELEMENTS
+    - ELEMENTS  :WIP:
     !!! (DEV) !!! // this means delete before publishing
 */
 
@@ -75,17 +75,9 @@ svg {
   background-color: var(--color-basic-base);
   color: var(--color-basic-font-base);
 
-  /* border radius when closed */
+  /* border radius for nav elements */
   --border-radius-closed: 25% 50%;
-  --border-radius-top-left: ;
-  --border-radius-top-right: 25% 50%;
-  --border-radius-bottom-right: 25% 50%;
-  --border-radius-bottom-left: ;
-  /* border radius when expanded */
-  --border-radius-top-left: ;
-  --border-radius-top-right: 25% 50%;
-  --border-radius-bottom-right: 25% 50%;
-  --border-radius-bottom-left: ;
+  --border-radius-extended: 100% 25%;
 }
 
 
@@ -134,8 +126,8 @@ svg {
 #gui-nav-presence:hover {
   /* transition change to */
   left: 0;
-  border-top-right-radius: 100% 25%;
-  border-bottom-right-radius: 100% 25%;
+  border-top-right-radius: var(--border-radius-extended);
+  border-bottom-right-radius: var(--border-radius-extended);
 
   /* this delay is "inverted" from the naive thought about how it works */
   transition-delay: 0s;
@@ -159,10 +151,15 @@ svg {
   /* position in grid */
   grid-column: 3 / 4;
   grid-row: 2 / -2;
+  justify-self: end;
+  align-self: center;
 
   /* form */
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  width: 50%;
+  height: min-content;
+  padding: 10% 5%;
+
 
   justify-content: center;
   align-items: center;
@@ -179,19 +176,23 @@ svg {
 /* === SECTIONS === */
 /* == hero == */ 
 #hero {
-  background-image: url(/content/img/home/hero.png);
+  background: url(/content/img/home/hero.png);
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 /* == carusel == */
 #carusel {
-  background-color: var(--color-basic-d2);
-
+  background: var(--color-basic-d2);
 }
 
 /* == info == */
 #info {
   background-image: url(/content/img/home/hero.png);
-
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 
