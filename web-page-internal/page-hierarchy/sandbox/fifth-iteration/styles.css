@@ -8,6 +8,11 @@ Content:
 
 
 /* 1. TYPOGRAPY */
+@font-face {
+  font-family: ;
+  src: url();
+}
+
 *{
   font-family: 'Quantico', sans-serif;
 }
