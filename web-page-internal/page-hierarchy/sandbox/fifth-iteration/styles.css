@@ -8,6 +8,13 @@ Content:
 
 
 /* 1. TYPOGRAPY */
+/* Try to fix CORS problems and insert importing of external fonts in here
+@font-face {
+  font-family: ;
+  src: url();
+}
+*/
+
 *{
   font-family: 'Quantico', sans-serif;
 }
